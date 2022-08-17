@@ -78,8 +78,8 @@ def download(url):
     print(Fore.YELLOW + '開始下載！' + Style.RESET_ALL)
 
     try:
-        yt.streams.filter().get_highest_resolution().download()
-        
+        yt.streams.filter().get_highest_resolution().download(output_path='./download/video')
+
 
     except:
         print(Fore.RED +'發生錯誤，此影片無法下載！'+ Style.RESET_ALL)
@@ -97,7 +97,7 @@ def download_list(url,len):
         print(Fore.YELLOW + '開始下載：'+ Style.RESET_ALL,yt.title)
 
         try:
-            yt.streams.filter().get_highest_resolution().download()
+            yt.streams.filter().get_highest_resolution().download(output_path='./download/video')
 
         except:
             print(Style.BRIGHT + Fore.RED +'發生錯誤，此影片無法下載！'+ Style.RESET_ALL)
@@ -112,7 +112,7 @@ def download_music(url):
     print(Fore.YELLOW + '開始下載！' + Style.RESET_ALL)
 
     try:
-        yt.streams.filter().get_audio_only().download()
+        yt.streams.filter().get_audio_only().download(output_path='./download/music')
         
     except:
         print(Style.BRIGHT + Fore.RED +'發生錯誤，此音樂無法下載！'+ Style.RESET_ALL)
@@ -129,7 +129,7 @@ def download_list_music(url,len):
         print(Fore.YELLOW + '開始下載：'+ Style.RESET_ALL,yt.title)
 
         try:
-            yt.streams.filter().get_audio_only().download()
+            yt.streams.filter().get_audio_only().download(output_path='./download/music')
 
         except:
             print(Style.BRIGHT + Fore.RED +'發生錯誤，此音樂無法下載！'+ Style.RESET_ALL)
