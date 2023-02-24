@@ -15,7 +15,9 @@ def start():
     url = input()
     print(Style.RESET_ALL)
 
-    if url == 'error':
+    result = get_info(url)
+
+    if result == 'error':
         print(Fore.RED +'發生錯誤，請重新輸入'+ Style.RESET_ALL)
         start()
 
@@ -27,48 +29,64 @@ def start():
         print(Fore.CYAN + Style.BRIGHT +'\n影片資訊：\n==================================================\n')
         print(result[0],'\n\n' + result[2]+' ｜ ' + result[1])
         print('\n=================================================='+ Style.RESET_ALL)
-        ask_yn = input('是否為這部影片(y/n)：' + Fore.MAGENTA)
+        
         print(Style.RESET_ALL)
 
-        if ask_yn == 'y':
+        type = input(Style.RESET_ALL + '選擇下載類型：\n1. mp4\n2. mp3\n3. 取消\n' + Fore.MAGENTA)
+        print(Style.RESET_ALL)
+        if str(type) == '1' or str(type) == 'mp4':
+            
+            download(url)
 
-            type = input(Style.RESET_ALL + '選擇下載類型：\n1. mp4\n2. mp3\n' + Fore.MAGENTA)
-            print(Style.RESET_ALL)
-            if str(type) == '1' or str(type) == 'mp4':
-                
-                download(url)
+        elif str(type) == '2' or str(type) == 'mp3':
 
-            elif str(type) == '2' or str(type) == 'mp3':
+            download_music(url)
 
-                download_music(url)
-
+        elif str(type) == '3':
+            print(Fore.RED + '已取消' + Style.RESET_ALL)
             start()
 
         else:
+            print(Fore.RED + '發生錯誤，請重新輸入' + Style.RESET_ALL)
             start()
+
+        start()
+
+    
+
 
     elif 'playlist' in url:
         result = get_info(url)
         print(Fore.CYAN + Style.BRIGHT + '\n播放清單資訊：\n==================================================\n')
         print( result[0],'\n\n' + result[1]+' Videos'+' ｜ ' + result[2]+' ｜ '+result[3])
         print('\n==================================================' + Style.RESET_ALL)
-        ask_yn = input('是否為這份播放清單(y/n)：' + Fore.MAGENTA)
+        
         print(Style.RESET_ALL)
 
-        if ask_yn == 'y':
+        
 
-            type = input(Style.RESET_ALL + '選擇下載類型：\n1. mp4\n2. mp3\n' + Fore.MAGENTA)
-            print(Style.RESET_ALL)
-            if str(type) == '1' or str(type) == 'mp4':
-                download_list(url,result[1])
-            
-            elif str(type) == '2' or str(type) == 'mp3':
-                download_list_music(url,result[1])
+        type = input(Style.RESET_ALL + '選擇下載類型：\n1. mp4\n2. mp3\n3. 取消\n' + Fore.MAGENTA)
+        print(Style.RESET_ALL)
 
+        if str(type) == '1' or str(type) == 'mp4':
+            download_list(url,result[1])
+        
+        elif str(type) == '2' or str(type) == 'mp3':
+            download_list_music(url,result[1])
+
+
+        
+        elif str(type) == '3':
+            print(Fore.RED + '已取消' + Style.RESET_ALL)
             start()
 
         else:
+            print(Fore.RED + '發生錯誤，請重新輸入' + Style.RESET_ALL)
             start()
+
+        start()
+
+
 
 
 
